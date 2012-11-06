@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "proyectos/edit" do
   before(:each) do
     @proyecto = assign(:proyecto, stub_model(Proyecto,
-      :nombre => "MyString",
       :cod => "MyString",
-      :id_contrato => 1
+      :nombre => "MyString",
+      :id_proyecto => 1
     ))
   end
 
@@ -14,9 +14,9 @@ describe "proyectos/edit" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => proyectos_path(@proyecto), :method => "post" do
-      assert_select "input#proyecto_nombre", :name => "proyecto[nombre]"
       assert_select "input#proyecto_cod", :name => "proyecto[cod]"
-      assert_select "input#proyecto_id_contrato", :name => "proyecto[id_contrato]"
+      assert_select "input#proyecto_nombre", :name => "proyecto[nombre]"
+      assert_select "input#proyecto_id_proyecto", :name => "proyecto[id_proyecto]"
     end
   end
 end

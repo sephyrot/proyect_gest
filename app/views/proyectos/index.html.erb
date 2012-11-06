@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Nombre</th>
     <th>Cod</th>
-    <th>Id contrato</th>
+    <th>Nombre</th>
+    <th>Id proyecto</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +12,9 @@
 
 <% @proyectos.each do |proyecto| %>
   <tr>
-    <td><%= proyecto.nombre %></td>
     <td><%= proyecto.cod %></td>
-    <td><%= proyecto.id_contrato %></td>
+    <td><%= proyecto.nombre %></td>
+    <td><%= proyecto.id_proyecto %></td>
     <td><%= link_to 'Show', proyecto %></td>
     <td><%= link_to 'Edit', edit_proyecto_path(proyecto) %></td>
     <td><%= link_to 'Destroy', proyecto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
