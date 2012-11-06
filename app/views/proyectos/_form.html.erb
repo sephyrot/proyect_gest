@@ -1,29 +1,26 @@
-<%= form_for(@proyecto) do |f| %>
-  <% if @proyecto.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@proyecto.errors.count, "error") %> prohibited this proyecto from being saved:</h2>
-
-      <ul>
-      <% @proyecto.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @proyecto, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :cod, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cod, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :nombre, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nombre, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :id_proyecto, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :id_proyecto, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :cod %><br />
-    <%= f.text_field :cod %>
-  </div>
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :id_proyecto %><br />
-    <%= f.number_field :id_proyecto %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                proyectos_path, :class => 'btn' %>
   </div>
 <% end %>

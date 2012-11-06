@@ -1,27 +1,40 @@
-<h1>Listing proyectos</h1>
-
-<table>
-  <tr>
-    <th>Cod</th>
-    <th>Nombre</th>
-    <th>Id proyecto</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @proyectos.each do |proyecto| %>
-  <tr>
-    <td><%= proyecto.cod %></td>
-    <td><%= proyecto.nombre %></td>
-    <td><%= proyecto.id_proyecto %></td>
-    <td><%= link_to 'Show', proyecto %></td>
-    <td><%= link_to 'Edit', edit_proyecto_path(proyecto) %></td>
-    <td><%= link_to 'Destroy', proyecto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Proyecto -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:cod) %></th>
+      <th><%= model_class.human_attribute_name(:nombre) %></th>
+      <th><%= model_class.human_attribute_name(:id_proyecto) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proyectos.each do |proyecto| %>
+      <tr>
+        <td><%= link_to proyecto.id, proyecto_path(proyecto) %></td>
+        <td><%= proyecto.cod %></td>
+        <td><%= proyecto.nombre %></td>
+        <td><%= proyecto.id_proyecto %></td>
+        <td><%=l proyecto.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_proyecto_path(proyecto), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      proyecto_path(proyecto),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Proyecto', new_proyecto_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_proyecto_path,
+            :class => 'btn btn-primary' %>
